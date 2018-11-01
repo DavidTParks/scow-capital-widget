@@ -96,11 +96,24 @@ $yantramanav: 'Yantramanav', sans-serif;
   }
   &-body {
     background: #1F80C3;
-    padding: 15px;
+    padding: 10px;
     height: 100px;
-
+    background-color: #1f80c3;
+    
     .ticker-amount {
       color:white;
+    }
+
+    .down-arrow {
+      position: absolute;
+      right: 0px;
+      top: 65px;
+    }
+
+    .up-arrow {
+      position: absolute;
+      right: 0px;
+      top: 65px;
     }
   }
   &-footer {
@@ -108,5 +121,6 @@ $yantramanav: 'Yantramanav', sans-serif;
     line-height: 30px;
     color: white;
     padding-left: 10px;
+    
   }
 }

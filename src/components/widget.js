@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
-import Logo from '../images/block30-logo.svg';
+import UpArrow from '../images/up_arrow.svg';
+import DownArrow from '../images/down_arrow.svg';
 import './widget.scss';
 
 class Widget extends Component {
@@ -104,6 +105,9 @@ class Widget extends Component {
                 </div>
                 <div className="widget-body">
                   <h1 className="ticker-amount">{this.state.tickerAmount.toLocaleString()}</h1>
+                  <div className="up-arrow">
+                    <UpArrow height={50} width={50} fill={'#88C984'}></UpArrow>
+                  </div>
                   <h3 className="points-percent" style={increaseStyles}>+{this.state.points} {" "} +{this.state.percent}%</h3>
                 </div>
                 <div className="widget-footer">
@@ -131,6 +135,9 @@ class Widget extends Component {
                 </div>
                 <div className="widget-body">
                   <h1 className="ticker-amount">{this.state.tickerAmount.toLocaleString()}</h1>
+                  <div className="down-arrow">
+                    <DownArrow height={50} width={50} fill={"#f24c46"}></DownArrow>
+                  </div>
                   <h3 className="points-percent" style={decreasedStyles}>-{this.state.points} {" "} -{this.state.percent}%</h3>
                 </div>
                 <div className="widget-footer">
