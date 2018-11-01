@@ -37,19 +37,19 @@ class Widget extends Component {
   simulateData = () => {
     let randomnum = parseFloat((Math.random() * (5.00 - 1.00) + 1.00).toFixed(2));
     randomnum *= (Math.floor(Math.random() * 2)) == 1 ? 1 : -1;
-    console.log(this.state.tickerAmount += randomnum < 3000);
-    if (this.state.tickerAmount - randomnum < 3000) {
+    console.log(randomnum);
+    if (this.state.tickerAmount - randomnum < 3000.00) {
       this.setState({
         tickerAmount: this.state.tickerAmount - randomnum,
-        points: ((this.state.tickerAmount - randomnum) - 3000).toFixed(2),
-        percent: (this.state.tickerAmount / 3000).toFixed(2),
+        points: ((this.state.tickerAmount - randomnum) - 3000.00).toFixed(2),
+        percent: (this.state.tickerAmount / 3000.00).toFixed(2),
         increased: false
       });
-    } else if (this.state.tickerAmount - randomnum > 3000) {
+    } else if (this.state.tickerAmount - randomnum > 3000.00) {
       this.setState({
         tickerAmount: this.state.tickerAmount - randomnum,
-        points: ((this.state.tickerAmount - randomnum) - 3000).toFixed(2),
-        percent: (this.state.tickerAmount / 3000).toFixed(2),
+        points: ((this.state.tickerAmount - randomnum) - 3000.00).toFixed(2),
+        percent: (this.state.tickerAmount / 3000.00).toFixed(2),
         increased: true
       });
     }
@@ -104,7 +104,7 @@ class Widget extends Component {
                 </div>
                 <div className="widget-body">
                   <h1 className="ticker-amount">{this.state.tickerAmount.toLocaleString()}</h1>
-                  <h3 style={increaseStyles}>+{this.state.points} {" "} +{this.state.percent}%</h3>
+                  <h3 className="points-percent" style={increaseStyles}>+{this.state.points} {" "} +{this.state.percent}%</h3>
                 </div>
                 <div className="widget-footer">
                   Powered by Scow
