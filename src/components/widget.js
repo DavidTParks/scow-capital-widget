@@ -37,7 +37,7 @@ class Widget extends Component {
   simulateData = () => {
     let randomnum = parseFloat((Math.random() * (5.00 - 1.00) + 1.00).toFixed(2));
     randomnum *= (Math.floor(Math.random() * 2)) == 1 ? 1 : -1;
-    console.log(randomnum);
+
     if (this.state.tickerAmount - randomnum < 3000.00) {
       this.setState({
         tickerAmount: this.state.tickerAmount - randomnum,
@@ -45,8 +45,6 @@ class Widget extends Component {
         percent: ((((this.state.tickerAmount - randomnum) / 3000.00) - 1.00) * 100).toFixed(2),
         increased: false
       });
-      console.log("points: " + points);
-      console.log("")
     } else if (this.state.tickerAmount - randomnum > 3000.00) {
       this.setState({
         tickerAmount: this.state.tickerAmount - randomnum,
