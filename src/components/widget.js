@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
+import Logo from '../images/block30-logo.svg';
 import './widget.scss';
 
 class Widget extends Component {
   state = {
-    opened: false,
-    showDock: true,
+    opened: true,
+    showDock: false,
+    tickerAmount: 29584,
+    points: 17.11,
+    percent: 4.17
   }
 
   handleToggleOpen = () => {
@@ -22,6 +26,24 @@ class Widget extends Component {
     });
   }
 
+  componentDidMount = () => {
+    this.intervalID = setInterval(
+      () => this.simulateData(),
+      3000
+    );
+  }
+
+  simulateData() {
+    let tickerRandom = Math.round(Math.random() * (29540 - 29500) + 29500);
+    this.setState({
+      tickerAmount: tickerRandom
+    });
+  }
+
+  componentWillUnmount = () => {
+    clearInterval(this.intervalID);
+  }
+
   handleWidgetExit = () => {
     this.setState({
       showDock: true,
@@ -32,7 +54,7 @@ class Widget extends Component {
     if (this.state.showDock) {
       return (
         <a className="dock" onClick={this.handleToggleOpen}>
-          ^ OPEN ^
+          + Block30 Widget
         </a>
       );
     }
@@ -49,17 +71,19 @@ class Widget extends Component {
             <div className={`widget widget-${status}`}>
               <div className="widget-header">
                 <div className="widget-header-title">
-                  Header
+                  BLOCK30
                 </div>
                 <a className="widget-header-icon" onClick={this.handleToggleOpen}>
                   X
                 </a>
               </div>
               <div className="widget-body">
-                Body
+                <h1 className="ticker-amount">{this.state.tickerAmount.toLocaleString()}</h1>
+                <h3 className="percent-right">+{this.state.points} {" "} {this.state.percent}%</h3>
+                <Logo />
               </div>
               <div className="widget-footer">
-                Footer
+                Powered by Scow
               </div>
             </div>
           )}

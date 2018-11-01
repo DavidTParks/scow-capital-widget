@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Yantramanav');
+
+$yantramanav: 'Yantramanav', sans-serif; 
+
 @keyframes slideInUp {
   from {
     transform: translate3d(0, 100%, 0);
@@ -26,6 +30,7 @@
   position: fixed;
   bottom: 0px;
   right: 10px;
+  font-family: $yantramanav;
   width: 200px;
   z-index: 9999;
 }
@@ -33,19 +38,21 @@
 .dock {
   cursor: pointer;
   display: flex;
+  font-family: $yantramanav;
   align-items: center;
   justify-content: center;
   padding: 10px;
   width: 180px;
+  color: white;
   border: 1px solid grey;
-  background: white;
+  background:#1F80C3;
 }
-
 
 .widget {
   width: 200px;
   border: 1px solid grey;
   border-bottom: none;
+  font-family: $yantramanav;
   animation-duration: 0.2s;
   animation-fill-mode: forwards;
 
@@ -67,10 +74,9 @@
   &-header {
     height: 30px;
     line-height: 30px;
-    background: lightgrey;
-    color: grey;
+    background: #394953;
+    color:white;
     padding-left: 10px;
-
     display: flex;
     align-items: stretch;
 
@@ -82,19 +88,29 @@
     &-icon {
       cursor: pointer;
       display: flex;
+      color: white;
       align-items: center;
       justify-content: center;
       padding: .75rem;
     }
   }
   &-body {
-    background: white;
+    background: #1F80C3;
     padding: 10px;
-    height: 150px;
+    height: 100px;
+
+    .ticker-amount {
+      color:white;
+    }
+
+    .percent-right {
+      color: #88C984;
+    }
   }
   &-footer {
-    background: green;
+    background: rgb(119, 119, 119);
     line-height: 30px;
+    color: white;
     padding-left: 10px;
   }
 }
