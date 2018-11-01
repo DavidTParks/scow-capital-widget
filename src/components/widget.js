@@ -15,6 +15,7 @@ class Widget extends Component {
     increased: true
   }
 
+  /*
   handleToggleOpen = () => {
     this.setState((prev) => {
       let { showDock } = prev;
@@ -27,6 +28,7 @@ class Widget extends Component {
       };
     });
   }
+  */
 
   componentDidMount = () => {
     this.intervalID = setInterval(
@@ -60,12 +62,15 @@ class Widget extends Component {
     clearInterval(this.intervalID);
   }
 
+  /*
   handleWidgetExit = () => {
     this.setState({
       showDock: true,
     });
   }
+  
 
+  */
   renderBody = () => {
     if (this.state.showDock) {
       return (
@@ -76,6 +81,7 @@ class Widget extends Component {
     }
     return '';
   }
+
 
   render() {
     const body = this.renderBody();
@@ -99,9 +105,6 @@ class Widget extends Component {
                   <div className="widget-header-title">
                     BLOCK30
                 </div>
-                  <a className="widget-header-icon" onClick={this.handleToggleOpen}>
-                    X
-                </a>
                 </div>
                 <div className="widget-body">
                   <h1 className="ticker-amount">{this.state.tickerAmount.toLocaleString()}</h1>
@@ -129,9 +132,6 @@ class Widget extends Component {
                   <div className="widget-header-title">
                     BLOCK30
                 </div>
-                  <a className="widget-header-icon" onClick={this.handleToggleOpen}>
-                    X
-                </a>
                 </div>
                 <div className="widget-body">
                   <h1 className="ticker-amount">{this.state.tickerAmount.toLocaleString()}</h1>
