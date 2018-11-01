@@ -8,9 +8,10 @@ class Widget extends Component {
   state = {
     opened: true,
     showDock: false,
-    tickerAmount: 29584,
-    points: 17.11,
-    percent: 4.17
+    tickerAmount: 3000.00,
+    points: 0.00,
+    percent: 0.00,
+    increased: true
   }
 
   handleToggleOpen = () => {
@@ -29,15 +30,29 @@ class Widget extends Component {
   componentDidMount = () => {
     this.intervalID = setInterval(
       () => this.simulateData(),
-      3000
+      1000
     );
   }
 
   simulateData = () => {
-    let tickerRandom = Math.round(Math.random() * (29540 - 29500) + 29500);
-    this.setState({
-      tickerAmount: tickerRandom
-    });
+    let randomnum = parseFloat((Math.random() * (5.00 - 1.00) + 1.00).toFixed(2));
+    randomnum *= (Math.floor(Math.random() * 2)) == 1 ? 1 : -1;
+    console.log(this.state.tickerAmount += randomnum < 3000);
+    if (this.state.tickerAmount - randomnum < 3000) {
+      this.setState({
+        tickerAmount: this.state.tickerAmount - randomnum,
+        points: ((this.state.tickerAmount - randomnum) - 3000).toFixed(2),
+        percent: (this.state.tickerAmount / 3000).toFixed(2),
+        increased: false
+      });
+    } else if (this.state.tickerAmount - randomnum > 3000) {
+      this.setState({
+        tickerAmount: this.state.tickerAmount - randomnum,
+        points: ((this.state.tickerAmount - randomnum) - 3000).toFixed(2),
+        percent: (this.state.tickerAmount / 3000).toFixed(2),
+        increased: true
+      });
+    }
   }
 
   componentWillUnmount = () => {
@@ -63,33 +78,71 @@ class Widget extends Component {
 
   render() {
     const body = this.renderBody();
+    const increased = this.state.increased;
 
-    return (
-      <div className="docked-widget">
-        <Transition in={this.state.opened} timeout={250} onExited={this.handleWidgetExit}>
-          {status => (
-            <div className={`widget widget-${status}`}>
-              <div className="widget-header">
-                <div className="widget-header-title">
-                  BLOCK30
+    let increaseStyles = {
+      color: '#88C984'
+    };
+
+    let decreasedStyles = {
+      color: '#f24c46'
+    };
+
+    if (increased) {
+      return (
+        <div className="docked-widget">
+          <Transition in={this.state.opened} timeout={250} onExited={this.handleWidgetExit}>
+            {status => (
+              <div className={`widget widget-${status}`}>
+                <div className="widget-header">
+                  <div className="widget-header-title">
+                    BLOCK30
                 </div>
-                <a className="widget-header-icon" onClick={this.handleToggleOpen}>
-                  X
+                  <a className="widget-header-icon" onClick={this.handleToggleOpen}>
+                    X
                 </a>
+                </div>
+                <div className="widget-body">
+                  <h1 className="ticker-amount">{this.state.tickerAmount.toLocaleString()}</h1>
+                  <h3 style={increaseStyles}>+{this.state.points} {" "} +{this.state.percent}%</h3>
+                </div>
+                <div className="widget-footer">
+                  Powered by Scow
               </div>
-              <div className="widget-body">
-                <h1 className="ticker-amount">{this.state.tickerAmount.toLocaleString()}</h1>
-                <h3 className="percent-right">+{this.state.points} {" "} {this.state.percent}%</h3>
               </div>
-              <div className="widget-footer">
-                Powered by Scow
+            )}
+          </Transition>
+          {body}
+        </div>
+      );
+    } else {
+      return (
+        <div className="docked-widget">
+          <Transition in={this.state.opened} timeout={250} onExited={this.handleWidgetExit}>
+            {status => (
+              <div className={`widget widget-${status}`}>
+                <div className="widget-header">
+                  <div className="widget-header-title">
+                    BLOCK30
+                </div>
+                  <a className="widget-header-icon" onClick={this.handleToggleOpen}>
+                    X
+                </a>
+                </div>
+                <div className="widget-body">
+                  <h1 className="ticker-amount">{this.state.tickerAmount.toLocaleString()}</h1>
+                  <h3 className="points-percent" style={decreasedStyles}>-{this.state.points} {" "} -{this.state.percent}%</h3>
+                </div>
+                <div className="widget-footer">
+                  Powered by Scow
               </div>
-            </div>
-          )}
-        </Transition>
-        {body}
-      </div>
-    );
+              </div>
+            )}
+          </Transition>
+          {body}
+        </div>
+      );
+    }
   }
 }
 
