@@ -33,7 +33,7 @@ class Widget extends Component {
     );
   }
 
-  simulateData() {
+  simulateData = () => {
     let tickerRandom = Math.round(Math.random() * (29540 - 29500) + 29500);
     this.setState({
       tickerAmount: tickerRandom
@@ -54,7 +54,7 @@ class Widget extends Component {
     if (this.state.showDock) {
       return (
         <a className="dock" onClick={this.handleToggleOpen}>
-          + Block30 Widget
+          ^ Block30 Widget ^
         </a>
       );
     }
@@ -80,7 +80,6 @@ class Widget extends Component {
               <div className="widget-body">
                 <h1 className="ticker-amount">{this.state.tickerAmount.toLocaleString()}</h1>
                 <h3 className="percent-right">+{this.state.points} {" "} {this.state.percent}%</h3>
-                <Logo />
               </div>
               <div className="widget-footer">
                 Powered by Scow
