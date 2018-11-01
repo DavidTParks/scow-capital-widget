@@ -41,25 +41,15 @@ class Widget extends Component {
     if (this.state.tickerAmount - randomnum < 3000.00) {
       this.setState({
         tickerAmount: this.state.tickerAmount - randomnum,
-<<<<<<< HEAD
         points: ((this.state.tickerAmount - randomnum) - 3000).toFixed(2),
         percent: parseFloat((this.state.tickerAmount / 3000.00) - 1.00).toFixed(2),
-=======
-        points: ((this.state.tickerAmount - randomnum) - 3000.00).toFixed(2),
-        percent: (this.state.tickerAmount / 3000.00).toFixed(2),
->>>>>>> 37d827bee31964b77e5ff3d7eebac3aea71888f9
         increased: false
       });
     } else if (this.state.tickerAmount - randomnum > 3000.00) {
       this.setState({
         tickerAmount: this.state.tickerAmount - randomnum,
-<<<<<<< HEAD
         points: ((this.state.tickerAmount - randomnum) - 3000).toFixed(2),
         percent: (parseFloat((this.state.tickerAmount / 3000.00) - 1.00)*100.00).toFixed(2),
-=======
-        points: ((this.state.tickerAmount - randomnum) - 3000.00).toFixed(2),
-        percent: (this.state.tickerAmount / 3000.00).toFixed(2),
->>>>>>> 37d827bee31964b77e5ff3d7eebac3aea71888f9
         increased: true
       });
     }
