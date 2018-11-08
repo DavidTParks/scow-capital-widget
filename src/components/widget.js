@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { Transition } from 'react-transition-group';
 import UpArrow from '../images/up_arrow.svg';
 import DownArrow from '../images/down_arrow.svg';
@@ -32,11 +33,12 @@ class Widget extends Component {
 
   componentDidMount = () => {
     this.intervalID = setInterval(
-      () => this.simulateData(),
+      () => this.callEndpoint(),
       2000
     );
   }
 
+  /*
   simulateData = () => {
     let randomnum = parseFloat((Math.random() * (5.00 - 1.00) + 1.00).toFixed(2));
     randomnum *= (Math.floor(Math.random() * 2)) == 1 ? 1 : -1;
@@ -56,6 +58,41 @@ class Widget extends Component {
         increased: true
       });
     }
+  }
+  */
+
+  callEndpoint = () => {
+    const myHeaders = new Headers();
+
+    myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append('x-api-key', 'XIBi5GQY3w8l672iuKF3S7r1ZDEPdsPa8e6O0cC0');
+    myHeaders.append('Access-Control-Allow-Origin', '*');
+    fetch('https://t1yq5vz48f.execute-api.us-east-2.amazonaws.com/prod/indexvalue', {
+      headers: myHeaders,
+      method: 'GET'
+    }).then(response => response.json())
+      .then(data => this.setState({ tickerAmount: data.body }));
+    /*
+    var config = {
+      headers: {
+        'x-api-key': 'XIBi5GQY3w8l672iuKF3S7r1ZDEPdsPa8e6O0cC0',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'crossDomain': true
+      }
+    };
+    axios.get(`https://t1yq5vz48f.execute-api.us-east-2.amazonaws.com/prod/indexvalue`, config)
+      .then(response => {
+        this.setState({
+          tickerAmount: response.body
+        });
+
+        console.log(respone);
+      })
+      .catch(error => {
+        console.log('Error fetching and parsing data', error);
+      });
+      */
   }
 
   componentWillUnmount = () => {
