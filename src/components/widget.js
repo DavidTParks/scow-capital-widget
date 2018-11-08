@@ -131,7 +131,7 @@ class Widget extends Component {
                   <h3 className="points-percent" style={increaseStyles}>+{this.state.points} {" "} +{this.state.percent}%</h3>
                 </div>
                 <div className="widget-footer">
-                  Powered by Scow
+                  
               </div>
               </div>
             )}
@@ -158,7 +158,7 @@ class Widget extends Component {
                   <h3 className="points-percent" style={decreasedStyles}>-{this.state.points} {" "} -{this.state.percent}%</h3>
                 </div>
                 <div className="widget-footer">
-                  Powered by Scow
+                  
               </div>
               </div>
             )}
