@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { Transition } from 'react-transition-group';
 import UpArrow from '../images/up_arrow.svg';
 import DownArrow from '../images/down_arrow.svg';
