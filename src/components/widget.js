@@ -32,9 +32,10 @@ class Widget extends Component {
   */
 
   componentDidMount = () => {
+    this.callEndpoint();
     this.intervalID = setInterval(
       () => this.callEndpoint(),
-      2000
+      60000
     );
   }
 
@@ -62,16 +63,15 @@ class Widget extends Component {
   */
 
   callEndpoint = () => {
+    console.log("updating");
     const myHeaders = new Headers();
 
-    myHeaders.append('Content-Type', 'application/json');
     myHeaders.append('x-api-key', 'XIBi5GQY3w8l672iuKF3S7r1ZDEPdsPa8e6O0cC0');
-    myHeaders.append('Access-Control-Allow-Origin', '*');
     fetch('https://t1yq5vz48f.execute-api.us-east-2.amazonaws.com/prod/indexvalue', {
       headers: myHeaders,
       method: 'GET'
     }).then(response => response.json())
-      .then(data => this.setState({ tickerAmount: data.body }));
+      .then(data => this.setState({ tickerAmount: parseFloat(data.body).toFixed(2) }));
     /*
     var config = {
       headers: {
