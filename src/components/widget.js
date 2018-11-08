@@ -120,13 +120,13 @@ class Widget extends Component {
               <div className={`widget widget-${status}`}>
                 <div className="widget-header">
                   <div className="widget-header-title">
-                    BLOCK30
+                    BLOCK<span className="thirty-logo">30</span>
                 </div>
                 </div>
                 <div className="widget-body">
                   <h1 className="ticker-amount">{this.state.tickerAmount.toLocaleString()}</h1>
                   <div className="up-arrow">
-                    <UpArrow height={50} width={50} fill={'#88C984'}></UpArrow>
+                    <UpArrow height={50} width={50} fill={increaseStyles.color}></UpArrow>
                   </div>
                   <h3 className="points-percent" style={increaseStyles}>+{this.state.points} {" "} +{this.state.percent}%</h3>
                 </div>
@@ -147,13 +147,13 @@ class Widget extends Component {
               <div className={`widget widget-${status}`}>
                 <div className="widget-header">
                   <div className="widget-header-title">
-                    BLOCK30
+                    BLOCK<span className="thirty-logo">30</span>
                 </div>
                 </div>
                 <div className="widget-body">
                   <h1 className="ticker-amount">{this.state.tickerAmount.toLocaleString()}</h1>
                   <div className="down-arrow">
-                    <DownArrow height={50} width={50} fill={"#f24c46"}></DownArrow>
+                    <DownArrow height={50} width={50} fill={decreasedStyles.color}></DownArrow>
                   </div>
                   <h3 className="points-percent" style={decreasedStyles}>-{this.state.points} {" "} -{this.state.percent}%</h3>
                 </div>

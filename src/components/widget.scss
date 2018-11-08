@@ -1,6 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Yantramanav');
 
-$yantramanav: 'Yantramanav', sans-serif; 
+$yantramanav: 'Yantramanav', sans-serif;
+
+@font-face {
+font-family: 'DIN Pro Condensed Bold';
+font-style: normal;
+font-weight: normal;
+src: local('DIN Pro Condensed Regular'), url('DINPro-CondBold.woff') format('woff');
+}
+
+@font-face {
+font-family: 'DIN Pro Condensed Regular';
+font-style: normal;
+font-weight: normal;
+src: local('DIN Pro Condensed Regular'), url('DINPro-Cond.woff') format('woff');
+}
 
 @keyframes slideInUp {
   from {
@@ -78,11 +92,16 @@ $yantramanav: 'Yantramanav', sans-serif;
     color:white;
     padding-left: 10px;
     display: flex;
-    align-items: stretch;
+    font-family: 'DIN Pro Condensed Bold';
 
     &-title {
       display: flex;
+      font-size: 25px;
       flex-grow: 1;
+    }
+
+    .thirty-logo {
+      color: #5BB1E3;
     }
 
     &-icon {
@@ -97,20 +116,24 @@ $yantramanav: 'Yantramanav', sans-serif;
   &-body {
     background: #1F80C3;
     padding: 10px;
+    font-family: 'DIN Pro Condensed Regular';
     height: 100px;
     background-color: #1f80c3;
+    
    
     .ticker-amount {
       color:white;
     }
 
     .down-arrow {
+      transform: scale(1, 2);
       position: absolute;
       right: 0px;
       top: 65px;
     }
 
     .up-arrow {
+      transform: scale(1, 2);
       position: absolute;
       right: 0px;
       top: 65px;
