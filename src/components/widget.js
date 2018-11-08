@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { Transition } from 'react-transition-group';
 import UpArrow from '../images/up_arrow.svg';
 import DownArrow from '../images/down_arrow.svg';
@@ -67,15 +66,6 @@ class Widget extends Component {
     .catch(error => {
       console.log('Request failed', error)
     })
-      
-      
-      /*.then((response => response.json()))
-        .then(data => this.setState({ 
-          tickerAmount: parseFloat(data.Item.Score.N).toFixed(2),
-          points: (parseFloat(data.Item.Score.N) - this.state.daily).toFixed(2),
-          percent: ((parseFloat(data.Item.Score.N - this.state.daily) / this.state.daily) * 100).toFixed(2)
-          }));
-          */
   }
 
   testfctDaily = () => {
@@ -84,20 +74,6 @@ class Widget extends Component {
       }).then((response => response.json()))
         .then(data => this.setState({ daily: parseFloat(data.Item.Score.N).toFixed(2) }));
   }
-
-/*
-  callEndpoint = () => {
-    console.log("updating");
-    const myHeaders = new Headers();
-
-    myHeaders.append('x-api-key', 'XIBi5GQY3w8l672iuKF3S7r1ZDEPdsPa8e6O0cC0');
-    fetch('https://t1yq5vz48f.execute-api.us-east-2.amazonaws.com/prod/indexvalue', {
-      headers: myHeaders,
-      method: 'GET'
-    }).then(response => response.json())
-      .then(data => this.setState({ tickerAmount: parseFloat(data.body).toFixed(2) }));
-  }
-  */
 
   componentWillUnmount = () => {
     clearInterval(this.intervalID);
