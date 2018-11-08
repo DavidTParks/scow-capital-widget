@@ -11,6 +11,7 @@ class Widget extends Component {
     opened: true,
     showDock: false,
     tickerAmount: 3000.00,
+    daily: 3000.00,
     points: 0.00,
     percent: 0.00,
     increased: true
@@ -29,16 +30,42 @@ class Widget extends Component {
       };
     });
   }
+  // index value: current endpoint
+  // daily point change: current - daily
+  // percentage daily change: (current - daily) / daily * 100
+  // 
   */
 
   componentDidMount = () => {
-    this.callEndpoint();
+    //this.callEndpoint();
+    this.testfctDaily();
+    this.testfctCurrent();
+    console.log(this.state.daily);
     this.intervalID = setInterval(
-      () => this.callEndpoint(),
+      () => this.testfctCurrent(),
       60000
     );
   }
 
+  testfctCurrent = () => {
+      fetch('https://aq1x8uxjzk.execute-api.us-east-2.amazonaws.com/Prod/Current', {
+        method: 'GET'
+      }).then((response => response.json()))
+        .then(data => this.setState({ 
+          tickerAmount: parseFloat(data.Item.Score.N).toFixed(2),
+          points: (parseFloat(data.Item.Score.N) - this.state.daily).toFixed(2),
+          percent: ((parseFloat(data.Item.Score.N - this.state.daily) / this.state.daily) * 100).toFixed(2)
+          }));
+  }
+
+  testfctDaily = () => {
+      fetch('https://aq1x8uxjzk.execute-api.us-east-2.amazonaws.com/Prod/Daily', {
+        method: 'GET'
+      }).then((response => response.json()))
+        .then(data => this.setState({ daily: parseFloat(data.Item.Score.N).toFixed(2) }));
+  }
+
+/*
   callEndpoint = () => {
     console.log("updating");
     const myHeaders = new Headers();
@@ -50,6 +77,7 @@ class Widget extends Component {
     }).then(response => response.json())
       .then(data => this.setState({ tickerAmount: parseFloat(data.body).toFixed(2) }));
   }
+  */
 
   componentWillUnmount = () => {
     clearInterval(this.intervalID);
