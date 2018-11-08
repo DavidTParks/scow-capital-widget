@@ -37,10 +37,7 @@ class Widget extends Component {
   */
 
   componentDidMount = () => {
-    //this.callEndpoint();
-    this.testfctDaily();
     this.testfctCurrent();
-    console.log(this.state.daily);
     this.intervalID = setInterval(
       () => this.testfctCurrent(),
       60000
@@ -48,14 +45,36 @@ class Widget extends Component {
   }
 
   testfctCurrent = () => {
-      fetch('https://aq1x8uxjzk.execute-api.us-east-2.amazonaws.com/Prod/Current', {
-        method: 'GET'
-      }).then((response => response.json()))
+    fetch('https://aq1x8uxjzk.execute-api.us-east-2.amazonaws.com/Prod/Current', {
+      method: 'GET'
+    }).then(response => {
+      return response.json(); // pass the data as promise to next then block
+    }).then(data => {
+      this.setState({ tickerAmount : parseFloat(data.Item.Score.N).toFixed(2)});
+  
+      return fetch('https://aq1x8uxjzk.execute-api.us-east-2.amazonaws.com/Prod/Daily'); // make a 2nd request and return a promise
+    })
+    .then(response => {
+      return response.json();
+    }).then(data => {
+      this.setState({
+        daily: parseFloat(data.Item.Score.N).toFixed(2),
+        points: (this.state.tickerAmount - parseFloat(data.Item.Score.N)).toFixed(2),
+        percent: (this.state.tickerAmount - parseFloat(data.Item.Score.N) / parseFloat(data.Item.Score.N) * 100).toFixed(2)
+      });
+    })
+    .catch(error => {
+      console.log('Request failed', error)
+    })
+      
+      
+      /*.then((response => response.json()))
         .then(data => this.setState({ 
           tickerAmount: parseFloat(data.Item.Score.N).toFixed(2),
           points: (parseFloat(data.Item.Score.N) - this.state.daily).toFixed(2),
           percent: ((parseFloat(data.Item.Score.N - this.state.daily) / this.state.daily) * 100).toFixed(2)
           }));
+          */
   }
 
   testfctDaily = () => {
