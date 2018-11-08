@@ -60,7 +60,8 @@ class Widget extends Component {
       this.setState({
         daily: parseFloat(data.Item.Score.N).toFixed(2),
         points: (this.state.tickerAmount - parseFloat(data.Item.Score.N)).toFixed(2),
-        percent: (this.state.tickerAmount - parseFloat(data.Item.Score.N) / parseFloat(data.Item.Score.N) * 100).toFixed(2)
+        percent: ((this.state.tickerAmount - parseFloat(data.Item.Score.N)) / parseFloat(data.Item.Score.N) * 100).toFixed(2),
+        increased: this.state.tickerAmount > parseFloat(data.Item.Score.N)
       });
     })
     .catch(error => {
