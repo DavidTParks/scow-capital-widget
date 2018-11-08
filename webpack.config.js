@@ -39,6 +39,15 @@ const defaultConfig = {
         ]
       },
       {
+        test: /\.woff$/,
+        use: {
+          loader: "url-loader",
+          options: {
+            limit: 50000,
+          },
+        },
+      },
+      {
         test: /\.(scss|css)$/,
         use: [
           // fallback to style-loader in development
