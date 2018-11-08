@@ -39,29 +39,6 @@ class Widget extends Component {
     );
   }
 
-  /*
-  simulateData = () => {
-    let randomnum = parseFloat((Math.random() * (5.00 - 1.00) + 1.00).toFixed(2));
-    randomnum *= (Math.floor(Math.random() * 2)) == 1 ? 1 : -1;
-
-    if (this.state.tickerAmount - randomnum < 3000.00) {
-      this.setState({
-        tickerAmount: this.state.tickerAmount - randomnum,
-        points: ((this.state.tickerAmount - randomnum) - 3000).toFixed(2),
-        percent: ((((this.state.tickerAmount - randomnum) / 3000.00) - 1.00) * 100).toFixed(2),
-        increased: false
-      });
-    } else if (this.state.tickerAmount - randomnum > 3000.00) {
-      this.setState({
-        tickerAmount: this.state.tickerAmount - randomnum,
-        points: ((this.state.tickerAmount - randomnum) - 3000).toFixed(2),
-        percent: ((((this.state.tickerAmount - randomnum) / 3000.00) - 1.00) * 100).toFixed(2),
-        increased: true
-      });
-    }
-  }
-  */
-
   callEndpoint = () => {
     console.log("updating");
     const myHeaders = new Headers();
@@ -72,27 +49,6 @@ class Widget extends Component {
       method: 'GET'
     }).then(response => response.json())
       .then(data => this.setState({ tickerAmount: parseFloat(data.body).toFixed(2) }));
-    /*
-    var config = {
-      headers: {
-        'x-api-key': 'XIBi5GQY3w8l672iuKF3S7r1ZDEPdsPa8e6O0cC0',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'crossDomain': true
-      }
-    };
-    axios.get(`https://t1yq5vz48f.execute-api.us-east-2.amazonaws.com/prod/indexvalue`, config)
-      .then(response => {
-        this.setState({
-          tickerAmount: response.body
-        });
-
-        console.log(respone);
-      })
-      .catch(error => {
-        console.log('Error fetching and parsing data', error);
-      });
-      */
   }
 
   componentWillUnmount = () => {
